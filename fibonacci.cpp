@@ -22,21 +22,22 @@ int fibonacci_naive(int n) {
 }
 
 int fibonacci_fast(int n) {
-    // write your code here
-    int a[n + 2];
-    int i;
-    a[0] = 0;
-    a[1] = 1;
-    for(i=2; i<=n; i++){
-        a[i] = a[i-1] + a[i-2];
+    int F1, F2, F;
+    F1 = 0;
+    F2 = 1;
+    for(int i = 2; i<=n; ++i){
+        F = F1 + F2;
+        F1 = F2;
+        F2 = F;
     }
-    return a[n];
+    return F;
 }
+
 
 void test_solution() {
     assert(fibonacci_fast(3) == 2);
     assert(fibonacci_fast(10) == 55);
-    for (int n = 0; n < 20; ++n)
+    for (int n = 0; n < 40; ++n)
         assert(fibonacci_fast(n) == fibonacci_naive(n));
 }
 
